@@ -32,3 +32,5 @@ Open this address in a web browser. http://127.0.0.1:5000
 * flask
 * requests
 * python-docx
+* Pillow
+* numpy
