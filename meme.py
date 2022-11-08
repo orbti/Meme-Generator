@@ -21,13 +21,15 @@ def generate_meme(path=None, body=None, author=None):
 
         img = random.choice(imgs)
     else:
-        img = path
+        img = path[0]
 
     if body is None:
-        quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
-                       './_data/DogQuotes/DogQuotesDOCX.docx',
-                       './_data/DogQuotes/DogQuotesPDF.pdf',
-                       './_data/DogQuotes/DogQuotesCSV.csv']
+        quote_files = [
+            './_data/DogQuotes/DogQuotesTXT.txt',
+            './_data/DogQuotes/DogQuotesDOCX.docx',
+             './_data/DogQuotes/DogQuotesPDF.pdf',
+            './_data/DogQuotes/DogQuotesCSV.csv'
+            ]
         quotes = []
         for f in quote_files:
             quotes.extend(Ingestor.parse(f))
@@ -56,4 +58,4 @@ if __name__ == "__main__":
                         help='Quote author to add to the image')
 
     args = parser.parse_args()
-    print(generate_meme(args.path, args.body, args.author))
+    print(f'Meme generated in at "{generate_meme(args.path, args.body, args.author)}"')

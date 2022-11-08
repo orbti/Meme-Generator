@@ -3,20 +3,22 @@ import random
 
 
 class MemeEngine():
-    def __init__(self, out_path):
-        self.out_path = out_path
+    def __init__(self, tmp_dir):
+        self.tmp_dir = tmp_dir
 
     def make_meme(self, img_path, text, author, width=500) -> str:
-        img = Image.open(img_path)
+        out_path = f'{self.tmp_dir}/tmp_img.png'
 
-        ratio = width/float(img.size[0])
-        height = int(ratio*float(img.size[1]))
-        img = img.resize((width, height), Image.NEAREST)
+        with Image.open(img_path) as img:
+            ratio = img.height / img.width
+            height = width * ratio
+            img = img.resize((int(width), int(height)))
 
-        draw = ImageDraw.Draw(img)
-        x = random.randint(10, 200)
-        y = random.randint(10, 200)
-        draw.multiline_text((x, y), f'{text}\n{author}', fill='white')
+            draw = ImageDraw.Draw(img)
 
-        img.save(f'{self.out_path}\out.jpg')
-        return self.out_path
+            x = random.randint(10, 200)
+            y = random.randint(10, 200)
+
+            draw.multiline_text((x, y), f'{text}\n{author}', fill='white')
+            img.save(out_path)
+        return out_path

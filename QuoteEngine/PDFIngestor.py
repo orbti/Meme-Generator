@@ -32,11 +32,10 @@ class PDFIngestor(IngestorInterface):
         quotes = []
         try:
             for text in f.readlines():
-                text = text.strip('\n\r\x0c')
-                print(text)
+                text = text.strip('\n\r')
+                
                 if len(text) > 0:
                     parse = re.split(' \B', text)
-                    print(parse)
                     for i in range(0, len(parse)-1, 2):
                         body = parse[i]
                         author = parse[i+1].strip('- ')
@@ -47,6 +46,5 @@ class PDFIngestor(IngestorInterface):
         finally:
             f.close()
             os.remove(tmp)
-            print(quotes)
 
         return quotes
