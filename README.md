@@ -26,10 +26,9 @@ Use this code in your CLI to run the server.
 ```
 python app.py
 ```
-Open this address in a web browser.
-http://127.0.0.1:5000
+Open this address in a web browser. http://127.0.0.1:5000
 # Dependencies
-pandas
-flask
-requests
-python-docx
+* pandas
+* flask
+* requests
+* python-docx
