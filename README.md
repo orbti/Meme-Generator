@@ -15,10 +15,11 @@ Install the required modules using PIP.
 pip install -r requirements.txt
 ```
 # CLI
+Use the following code to generate a meme. If no arguments are pased a random meme will be generated. Output will be a path to the generated meme.
 ```
 usage: meme.py [-h] [--path PATH] [--body BODY] [--author AUTHOR]
 
-Genearate a meme
+Genearate a meme to a specific path.
 
 options:
   -h, --help       show this help message and exit
