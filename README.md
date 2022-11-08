@@ -5,9 +5,14 @@ multimedia application to dynamically generate memes,
 including an image with an overlaid quote.
 
 # Installation
+Clone this github repo using the below code.
 
 ```
 git clone https://github.com/orbti/Meme-Generator.git
+```
+Install the required modules using PIP.
+```
+pip install -r requirements.txt
 ```
 # CLI
 ```
