@@ -6,8 +6,7 @@ from flask import Flask, render_template, abort, request
 
 from MemeGenerator import MemeEngine
 from QuoteEngine import Ingestor
-from QuoteEngine import QuoteModel
-from meme import generate_meme
+
 
 app = Flask(__name__)
 
@@ -42,7 +41,6 @@ def meme_rand():
     """Generate a random meme."""
     img = random.choice(imgs)
     quote = random.choice(quotes)
-    print(quote)
     path = meme.make_meme(img, quote.body, quote.author)
     return render_template('meme.html', path=path)
 
@@ -60,19 +58,16 @@ def meme_post():
         return render_template('meme_form.html')
 
     imgage_url = request.form['image_url']
-    try:
-        r = requests.get(imgage_url, verify=False)
-        tmp = f'./static/tmp_img.png'
-        img = open(tmp, 'wb').write(r.content)
-    except:
-        print("Bad Image Url")
-        return render_template('meme_form.html')
+    
+    request = requests.get(imgage_url, verify=False)
+    tmp = f'./static/tmp_img.png'
+    img = open(tmp, 'wb').write(request.content)
+    
 
     body = request.form['body']
     author = request.form['author']
     path = meme.make_meme(img, body, author)
 
-    os.remove(tmp)
     return render_template('meme.html', path=path)
 
 
