@@ -27,6 +27,8 @@ class DocxIngestor(IngestorInterface):
         for para in doc.paragraphs:
             if para.text != '':
                 parse = para.text.split('-')
+                for i in range(len(parse)):
+                    parse[i] = parse[i].strip(' ').strip('"')
                 quote = QuoteModel(parse[0], parse[1])
                 quotes.append(quote)
         return quotes

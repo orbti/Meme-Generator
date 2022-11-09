@@ -25,7 +25,7 @@ class TextIngestor(IngestorInterface):
         with open(path, 'r') as f:
             lines = f.readlines()
             for line in lines:
-                line = line.strip('\n\r').strip()
+                line = line.strip('\n\r').strip().strip('ï»¿')
                 if len(line) > 0:
                     parse = line.split('-')
                     quote = QuoteModel(parse[0], parse[1])

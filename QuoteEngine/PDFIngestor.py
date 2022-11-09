@@ -37,7 +37,7 @@ class PDFIngestor(IngestorInterface):
                 if len(text) > 0:
                     parse = re.split(' \B', text)
                     for i in range(0, len(parse)-1, 2):
-                        body = parse[i]
+                        body = parse[i].strip('"')
                         author = parse[i+1].strip('- ')
                         quote = QuoteModel(body, author)
                         quotes.append(quote)
