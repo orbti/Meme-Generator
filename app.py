@@ -57,9 +57,9 @@ def meme_post():
     if not request.form['imgage_url']:
         return render_template('meme_form.html')
 
-    imgage_url = request.form['image_url']
+    img_url = request.form['image_url']
     
-    request = requests.get(imgage_url, verify=False)
+    request = requests.get(img_url, verify=False)
     tmp = f'./static/tmp_img.png'
     img = open(tmp, 'wb').write(request.content)
     
@@ -72,4 +72,4 @@ def meme_post():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
