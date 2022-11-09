@@ -54,19 +54,20 @@ def meme_form():
 @app.route('/create', methods=['POST'])
 def meme_post():
     """Create a user defined meme."""
-    if not request.form['imgage_url']:
+    if not request.form['image_url']:
         return render_template('meme_form.html')
 
     img_url = request.form['image_url']
+    res = requests.get(img_url)
+    filename = f'./static/tmp_img.png'
+    with open(filename, 'wb') as img:
+        img.write(res.content)
     
-    request = requests.get(img_url, verify=False)
-    tmp = f'./static/tmp_img.png'
-    img = open(tmp, 'wb').write(request.content)
-    
+    img_path = './static/tmp_img.png'
 
     body = request.form['body']
     author = request.form['author']
-    path = meme.make_meme(img, body, author)
+    path = meme.make_meme(img_path, body, author)
 
     return render_template('meme.html', path=path)
 

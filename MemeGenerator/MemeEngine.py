@@ -16,8 +16,8 @@ class MemeEngine():
 
             draw = ImageDraw.Draw(img)
 
-            x = random.randint(10, 200)
-            y = random.randint(10, 200)
+            x = random.randint(5, img.width/4)
+            y = random.randint(5, img.height/4)
 
             draw.multiline_text((x, y), f'{text}\n{author}', fill='white')
             img.save(out_path)
